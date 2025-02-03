@@ -274,10 +274,10 @@ Utiliza todos los comandos y opciones aprendidas para realizar el siguiente ejer
 # Definir rutas de archivos
 INPUT_FASTQ1="raw_data/sample1.fastq"
 INPUT_FASTQ2="raw_data/sample2.fastq"
-FILTRADAS="Resultados/secuencias_filtradas.txt"
-UNICAS="Resultados/secuencias_unicas.txt"
-INVERTIDAS="Resultados/secuencias_invertidas.txt"
-CONTEO="Resultados/conteo_secuencias.txt"
+FILTRADAS="results/secuencias_filtradas.txt"
+UNICAS="results/secuencias_unicas.txt"
+INVERTIDAS="results/secuencias_invertidas.txt"
+CONTEO="results/conteo_secuencias.txt"
 
 # 1. Filtrar secuencias que contienen "CG" y guardar en un archivo
 echo "Filtrando secuencias que contienen 'CG'..."
