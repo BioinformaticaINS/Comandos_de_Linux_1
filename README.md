@@ -281,7 +281,7 @@ CONTEO="results/conteo_secuencias.txt"
 
 # 1. Filtrar secuencias que contienen "CG" y guardar en un archivo
 echo "Filtrando secuencias que contienen 'CG'..."
-grep -A 1 "^@" $INPUT_FASTQ1 $INPUT_FASTQ2 | grep -v "^@" | grep -v "^--" | grep "CG" > $FILTRADAS
+grep -A 1 -h "^@" $INPUT_FASTQ1 $INPUT_FASTQ2 | grep -v "^@" | grep -v "^--" | grep "CG" > $FILTRADAS
 
 # 2. Contar secuencias únicas
 echo "Contando secuencias únicas..."
@@ -339,7 +339,7 @@ Si ejecutas el script con los archivos `sample1.fastq` y `sample2.fastq`, la sal
 ```
 Filtrando secuencias que contienen 'CG'...
 Contando secuencias únicas...
-Número de secuencias únicas: 1
+Número de secuencias únicas: 4
 Invertiendo y formateando secuencias...
 Procesamiento completado.
 ---------------------------------
@@ -357,26 +357,39 @@ Resumen de resultados:
 
 1. **`secuencias_filtradas.txt`**:
    ```
-   ATGCGATCG
-   ATGCGATCG
+   ATGCGATCGAT
+   CGATCGATAGC
+   GCGTATAGCTA
+   CTAGATCGCTA
    ```
 
 2. **`secuencias_unicas.txt`**:
    ```
-   ATGCGATCG
+   ATGCGATCGAT
+   CGATCGATAGC
+   CTAGATCGCTA
+   GCGTATAGCTA
    ```
 
 3. **`conteo_secuencias.txt`**:
    ```
-   Número de secuencias únicas: 1
+   Número de secuencias únicas: 4
    ```
 
 4. **`secuencias_invertidas.txt`**:
    ```
-   GCTA
+   TAGC
+   TAGC
+   GTA
    CGAT
-   GCTA
-   CGAT
+   AGCT
+   AGC
+   ATCG
+   ATAT
+   GCG
+   ATCG
+   CTAG   
+   ATC
    ```
 
 ---
