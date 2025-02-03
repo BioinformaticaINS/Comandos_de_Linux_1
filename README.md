@@ -102,13 +102,13 @@ Ahora que tenemos la estructura del proyecto, practicaremos con los comandos.
    ```
 3. Ordenar el archivo `lecturas.txt` en orden inverso.
    ```bash
-   sort -r Analisis/lecturas.txt
+   sort -r results/lecturas.txt
    ```
 
 4. Ordenar un archivo con datos tabulados usando `TAB` como delimitador y la tercera columna.
    ```bash
-   echo -e "Seq1\tGeneA\t300\nSeq2\tGeneB\t200" > Analisis/datos.txt
-   sort -t $'\t' -k3 -n Analisis/datos.txt
+   echo -e "Seq1\tGeneA\t300\nSeq2\tGeneB\t200" > results/datos.txt
+   sort -t $'\t' -k3 -n results/datos.txt
    ```
 
 ---
@@ -197,13 +197,10 @@ Ahora que tenemos la estructura del proyecto, practicaremos con los comandos.
 
 - **Función**: Invertir el orden de los caracteres en cada línea.
 
-- **Opciones comunes**:
-  - No tiene opciones adicionales comunes.
-
 **Ejercicios**:
 1. Invertir las secuencias de ADN en el archivo `sample1.fastq`.
    ```bash
-   grep -v "@" raw_data/sample1.fastq | grep -v "+" | rev
+   grep -v "@" raw_data/sample1.fastq | grep -v "+" | grep -v "I" | rev
    ```
 
 ---
@@ -218,12 +215,12 @@ Ahora que tenemos la estructura del proyecto, practicaremos con los comandos.
 **Ejercicios**:
 1. Ajustar las secuencias de ADN en `sample1.fastq` a un ancho de 5 caracteres.
    ```bash
-   grep -v "@" raw_data/sample1.fastq | grep -v "+" | fold -w 5
+   grep -v "@" raw_data/sample1.fastq | grep -v "+" | grep -v "I" | fold -w 5
    ```
 
 2. Ajustar las secuencias a un ancho de 10 caracteres.
    ```bash
-   grep -v "@" raw_data/sample1.fastq | grep -v "+" | fold -w 10
+   grep -v "@" raw_data/sample1.fastq | grep -v "+" | grep -v "I" | fold -w 10
    ```
 
 ---
@@ -235,18 +232,18 @@ Utiliza todos los comandos y opciones aprendidas para realizar el siguiente ejer
 1. **Filtrar y contar secuencias**:
    - Extrae las secuencias que contienen "CG" del archivo `sample1.fastq`.
    ```bash
-   grep "CG" raw_data/sample1.fastq > Resultados/secuencias_filtradas.txt
+   grep "CG" raw_data/sample1.fastq > results/secuencias_filtradas.txt
    ```
 
    - Cuenta cuántas secuencias únicas contienen "CG".
    ```bash
-   grep -v "@" Resultados/secuencias_filtradas.txt | grep -v "+" | sort | uniq -u | wc -l
+   grep -v "@" results/secuencias_filtradas.txt | grep -v "+" | sort | uniq -u | wc -l
    ```
 
 2. **Invertir y ajustar las secuencias**:
    - Invierte las secuencias y ajústalas a un ancho de 4 caracteres.
    ```bash
-   grep -v "@" Resultados/secuencias_filtradas.txt | grep -v "+" | rev | fold -w 4
+   grep -v "@" results/secuencias_filtradas.txt | grep -v "+" | rev | fold -w 4
    ```
 
 ---
@@ -265,17 +262,125 @@ Utiliza todos los comandos y opciones aprendidas para realizar el siguiente ejer
 
 ---
 
-### **Actividad Asincrónica**
+### **Script de Automatización Ajustado para Dos Archivos FASTQ**
 
-1. **Exploración de Datos**:
-   - Descarga un archivo FASTQ real de una base de datos pública.
-   - Utiliza los comandos aprendidos para filtrar, ordenar y analizar las secuencias.
+#### **Nombre del Script**: `procesar_fastq.sh`
 
-2. **Desafío**:
-   - Modifica el script `procesar_fastq.sh` para incluir opciones avanzadas como la compresión de espacios o el conteo de bases específicas.
+#### **Código del Script**:
+
+```bash
+#!/bin/bash
+
+# Definir rutas de archivos
+INPUT_FASTQ1="raw_data/sample1.fastq"
+INPUT_FASTQ2="raw_data/sample2.fastq"
+FILTRADAS="Resultados/secuencias_filtradas.txt"
+UNICAS="Resultados/secuencias_unicas.txt"
+INVERTIDAS="Resultados/secuencias_invertidas.txt"
+CONTEO="Resultados/conteo_secuencias.txt"
+
+# 1. Filtrar secuencias que contienen "CG" y guardar en un archivo
+echo "Filtrando secuencias que contienen 'CG'..."
+grep -A 1 "^@" $INPUT_FASTQ1 $INPUT_FASTQ2 | grep -v "^@" | grep -v "^--" | grep "CG" > $FILTRADAS
+
+# 2. Contar secuencias únicas
+echo "Contando secuencias únicas..."
+sort $FILTRADAS | uniq > $UNICAS
+
+# 3. Contar el número total de secuencias únicas
+NUM_UNICAS=$(wc -l < $UNICAS)
+echo "Número de secuencias únicas: $NUM_UNICAS" > $CONTEO
+
+# 4. Invertir las secuencias y mostrarlas con un ancho de 4 caracteres
+echo "Invertiendo y formateando secuencias..."
+rev $FILTRADAS | fold -w 4 > $INVERTIDAS
+
+# 5. Mostrar resumen de resultados
+echo "Procesamiento completado."
+echo "---------------------------------"
+echo "Resumen de resultados:"
+echo "- Secuencias filtradas: $FILTRADAS"
+echo "- Secuencias únicas: $UNICAS"
+echo "- Conteo de secuencias únicas: $CONTEO"
+echo "- Secuencias invertidas y formateadas: $INVERTIDAS"
+echo "---------------------------------"
+```
+
+---
+
+### **Instrucciones para Usar el Script**
+
+1. **Crear el script**:
+   - Guarda el código anterior en un archivo llamado `procesar_fastq.sh`.
+   - Asegúrate de que el archivo tenga permisos de ejecución:
+     ```bash
+     chmod +x procesar_fastq.sh
+     ```
+
+2. **Ejecutar el script**:
+   - Navega al directorio donde se encuentra el script y ejecútalo:
+     ```bash
+     ./procesar_fastq.sh
+     ```
+
+3. **Resultados**:
+   - El script generará los siguientes archivos en la carpeta `Resultados`:
+     - `secuencias_filtradas.txt`: Secuencias que contienen "CG".
+     - `secuencias_unicas.txt`: Secuencias únicas después de filtrar.
+     - `conteo_secuencias.txt`: Número de secuencias únicas.
+     - `secuencias_invertidas.txt`: Secuencias invertidas y formateadas.
+
+---
+
+### **Ejemplo de Salida del Script**
+
+Si ejecutas el script con los archivos `sample1.fastq` y `sample2.fastq`, la salida sería:
+
+```
+Filtrando secuencias que contienen 'CG'...
+Contando secuencias únicas...
+Número de secuencias únicas: 1
+Invertiendo y formateando secuencias...
+Procesamiento completado.
+---------------------------------
+Resumen de resultados:
+- Secuencias filtradas: Resultados/secuencias_filtradas.txt
+- Secuencias únicas: Resultados/secuencias_unicas.txt
+- Conteo de secuencias únicas: Resultados/conteo_secuencias.txt
+- Secuencias invertidas y formateadas: Resultados/secuencias_invertidas.txt
+---------------------------------
+```
+
+---
+
+### **Archivos Generados**
+
+1. **`secuencias_filtradas.txt`**:
+   ```
+   ATGCGATCG
+   ATGCGATCG
+   ```
+
+2. **`secuencias_unicas.txt`**:
+   ```
+   ATGCGATCG
+   ```
+
+3. **`conteo_secuencias.txt`**:
+   ```
+   Número de secuencias únicas: 1
+   ```
+
+4. **`secuencias_invertidas.txt`**:
+   ```
+   GCTA
+   CGAT
+   GCTA
+   CGAT
+   ```
 
 ---
 
 ### **Referencias**
 
-- Blum, R., & Bresnahan, C. (2021). *Linux Command Line and Shell Scripting Bible*. Wiley. 
+- Blum, R., & Bresnahan, C. (2021). *Linux Command Line and Shell Scripting Bible*. Wiley.
