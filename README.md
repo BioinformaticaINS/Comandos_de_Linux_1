@@ -90,15 +90,22 @@ Ahora que tenemos la estructura del proyecto, practicaremos con los comandos.
 **Ejercicios**:
 1. Ordenar el archivo `lecturas.txt` por la segunda columna de forma numérica.
    ```bash
-   sort -k2 -n Analisis/lecturas.txt
+   echo -e "Seq1\t20\nSeq2\t10\nSeq3\t15" > results/lecturas.txt
+   sort -k2 -n results/lecturas.txt
    ```
+   Resultados esperados:
 
-2. Ordenar el archivo `lecturas.txt` en orden inverso.
+   ```bash
+   Seq2    10
+   Seq3    15
+   Seq1    20
+   ```
+3. Ordenar el archivo `lecturas.txt` en orden inverso.
    ```bash
    sort -r Analisis/lecturas.txt
    ```
 
-3. Ordenar un archivo con datos tabulados usando `TAB` como delimitador y la tercera columna.
+4. Ordenar un archivo con datos tabulados usando `TAB` como delimitador y la tercera columna.
    ```bash
    echo -e "Seq1\tGeneA\t300\nSeq2\tGeneB\t200" > Analisis/datos.txt
    sort -t $'\t' -k3 -n Analisis/datos.txt
