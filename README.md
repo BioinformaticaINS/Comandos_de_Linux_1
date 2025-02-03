@@ -1,16 +1,16 @@
 # Comandos de Linux 1
 
-## 1. **Objetivo de la Clase**
+## **Objetivo de la Clase**
 
 Al finalizar la sesión, los estudiantes serán capaces de utilizar comandos avanzados de manipulación de texto (`grep`, `sort`, `uniq`, `tr`, `wc`, `rev`, `fold`) para procesar y analizar datos en un proyecto de NGS.
 
 ---
 
-### **Estructura del Proyecto NGS**
+## **Estructura del Proyecto NGS**
 
 Primero, crearemos la estructura de carpetas y archivos para simular un proyecto de NGS. Luego, utilizaremos los comandos para manipular y analizar los datos.
 
-#### **1. Creación de la Estructura del Proyecto**
+### **1. Creación de la Estructura del Proyecto**
 
 1. **Crear el directorio del proyecto**:
    ```bash
@@ -49,11 +49,11 @@ Primero, crearemos la estructura de carpetas y archivos para simular un proyecto
 
 ---
 
-### **2. Práctica con los Comandos**
+## **2. Práctica con los Comandos**
 
 Ahora que tenemos la estructura del proyecto, practicaremos con los comandos.
 
-#### **Comando `grep` y Expresiones Regulares**
+### **Comando `grep` y Expresiones Regulares**
 
 - **Función**: Buscar patrones en archivos de texto.
 - **Ejemplo**: Buscar todas las secuencias que contienen "ATGC" en `secuencias.fasta`.
@@ -70,7 +70,7 @@ Ahora que tenemos la estructura del proyecto, practicaremos con los comandos.
 
 ---
 
-#### **Comando `sort`**
+### **Comando `sort`**
 
 - **Función**: Ordenar líneas de texto.
 - **Ejemplo**: Ordenar los resultados intermedios por el número de lecturas.
@@ -87,7 +87,7 @@ Ahora que tenemos la estructura del proyecto, practicaremos con los comandos.
 
 ---
 
-#### **Comando `uniq`**
+### **Comando `uniq`**
 
 - **Función**: Eliminar líneas duplicadas.
 - **Ejemplo**: Mostrar secuencias únicas en `secuencias.fasta`.
@@ -103,7 +103,7 @@ Ahora que tenemos la estructura del proyecto, practicaremos con los comandos.
 
 ---
 
-#### **Comando `tr`**
+### **Comando `tr`**
 
 - **Función**: Traducir o eliminar caracteres.
 - **Ejemplo**: Convertir todas las letras de `secuencias.fasta` a mayúsculas.
@@ -124,7 +124,7 @@ Ahora que tenemos la estructura del proyecto, practicaremos con los comandos.
 
 ---
 
-#### **Comando `wc`**
+### **Comando `wc`**
 
 - **Función**: Contar líneas, palabras y caracteres.
 - **Ejemplo**: Contar el número de secuencias en `secuencias.fasta`.
@@ -138,7 +138,7 @@ Ahora que tenemos la estructura del proyecto, practicaremos con los comandos.
 
 ---
 
-#### **Comando `rev`**
+### **Comando `rev`**
 
 - **Función**: Invertir líneas de texto.
 - **Ejemplo**: Invertir las secuencias en `secuencias.fasta`.
@@ -155,7 +155,7 @@ Ahora que tenemos la estructura del proyecto, practicaremos con los comandos.
 
 ---
 
-#### **Comando `fold`**
+### **Comando `fold`**
 
 - **Función**: Ajustar líneas de texto a un ancho específico.
 - **Ejemplo**: Mostrar las secuencias en `secuencias.fasta` con un ancho de 5 caracteres.
@@ -176,7 +176,7 @@ Ahora que tenemos la estructura del proyecto, practicaremos con los comandos.
 
 ---
 
-### **3. Ejercicio Integrador**
+## **3. Ejercicio Integrador**
 
 1. **Filtrar secuencias**:
    - Usa `grep` para extraer las secuencias que contienen "CG" y guárdalas en un archivo llamado `secuencias_filtradas.txt`.
@@ -198,7 +198,7 @@ Ahora que tenemos la estructura del proyecto, practicaremos con los comandos.
 
 ---
 
-### **Resumen de Comandos**
+## **Resumen de Comandos**
 
 | Comando | Función | Ejemplo |
 |---------|---------|---------|
@@ -226,7 +226,3 @@ Ahora que tenemos la estructura del proyecto, practicaremos con los comandos.
 ### **Referencias**
 
 - Blum, R., & Bresnahan, C. (2021). *Linux Command Line and Shell Scripting Bible*. Wiley.
-
----
-
-Esta clase práctica integra los comandos de manera efectiva en un contexto de bioinformática, permitiendo a los estudiantes aplicar lo aprendido en un escenario realista. ¡Espero que sea útil para tu clase! 😊
