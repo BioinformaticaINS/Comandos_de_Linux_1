@@ -289,7 +289,7 @@ sort $FILTRADAS | uniq > $UNICAS
 
 # 3. Contar el número total de secuencias únicas
 NUM_UNICAS=$(wc -l < $UNICAS)
-echo "Número de secuencias únicas: $NUM_UNICAS" > $CONTEO
+echo "Número de secuencias únicas: $NUM_UNICAS" # > $CONTEO
 
 # 4. Invertir las secuencias y mostrarlas con un ancho de 4 caracteres
 echo "Invertiendo y formateando secuencias..."
