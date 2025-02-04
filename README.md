@@ -243,7 +243,7 @@ Utiliza todos los comandos y opciones aprendidas para realizar el siguiente ejer
 2. **Invertir y ajustar las secuencias**:
    - Invierte las secuencias y ajústalas a un ancho de 4 caracteres.
    ```bash
-   grep -v "@" results/secuencias_filtradas.txt | grep -v "+" | rev | fold -w 4
+   grep -v "@" raw_data/sample1.fastq | grep -v "+" | rev | fold -w 4
    ```
 
 ---
